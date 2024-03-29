@@ -1,0 +1,25 @@
+{
+  "name": "openwrt-firmware-builder-helper",
+  "version": "1.0.0",
+  "description": "A better way to build package lists for the OpenWRT Firmware Builder",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/helmturner/openwrt-firmware-builder-helper.git"
+  },
+  "keywords": [
+    "openwrt",
+    "firmware",
+    "builder",
+    "opkg"
+  ],
+  "author": "Alec Helmturner",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/helmturner/openwrt-firmware-builder-helper/issues"
+  },
+  "homepage": "https://github.com/helmturner/openwrt-firmware-builder-helper#readme"
+}
