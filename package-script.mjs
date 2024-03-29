@@ -2,9 +2,11 @@ import fs from 'fs';
 import { readFromLuciOpkgCopyPaste } from "./parseOpkgOutput.mjs";
 
 const fromLuciOpkgCopyPaste = readFromLuciOpkgCopyPaste("luci-opkg.txt");
+const fromPackagesInput = readFromPackagesInput("packages-input.txt");
 
 const arr = [
   ...fromLuciOpkgCopyPaste,
+  ...fromPackagesInput,
   'strongswan-mod-curl',
   'iptables-mod-conntrack-extra',
   'iptables-mod-ipopt',
