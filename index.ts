@@ -3,15 +3,23 @@ import { readFromLuciOpkgCopyPaste } from "./parseOpkgOutput.ts";
 import { readFromPackagesInput } from "./parsePackageList.ts";
 
 export default function (opts: {
-  rawListPaths?: string[];
+  listPaths?: string[];
   opkgListPaths?: string[];
   jsonBackupPaths?: string[];
+  removeListPaths?: string[];
   outfile: string;
 }) {
   const inputs: string[][] = [];
+  const removals = new Set<string>();
 
-  if (opts.rawListPaths) {
-    for (const path of opts.rawListPaths) {
+  if (opts.removeListPaths) {
+    for (const path of opts.removeListPaths) {
+      readFromPackagesInput(path).forEach((pkg) => removals.add(pkg));
+    }
+  }
+
+  if (opts.listPaths) {
+    for (const path of opts.listPaths) {
       inputs.push(readFromPackagesInput(path));
     }
   }
@@ -46,7 +54,7 @@ export default function (opts: {
   }
 
   const unique = new Set(inputs.flat().sort());
-  const packages = Array.from(unique);
+  const packages = Array.from(unique).filter((pkg) => !removals.has(pkg));
 
   fs.writeFileSync(opts.outfile, packages.join(" ").trim());
 
