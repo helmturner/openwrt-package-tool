@@ -13,6 +13,17 @@ const p = cmd.program
     .option('-o, --outfile <path>', 'specify the output file', '.packages')
     .action((options) => {
         console.info(figlet.textSync('Package List Generator'));
+
+        if ([
+            options.rawListPaths,
+            options.opkgListPaths,
+            options.jsonBackupPaths
+        ].every((x) => x.length === 0)) {
+            console.error('No inputs specified');
+            p.help();
+            return;
+        }
+
         run(options)
     })
 
