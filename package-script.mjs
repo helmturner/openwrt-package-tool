@@ -272,4 +272,13 @@ let unique = new Set(arr.sort());
 let print = Array.from(unique);
 
 fs.writeFileSync('./packages.txt', print.join(' ').trim());
+
+const month = new Date().getMonth();
+const day = new Date().getDate();
+const year = new Date().getFullYear();
+
+fs.writeFileSync(
+  `backup_${month}-${day}-${year}_${Date.now()}.json`,
+  JSON.stringify({ packages: print })
+);
 export default print;
