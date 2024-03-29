@@ -1,23 +1,5 @@
 import fs from 'fs';
-
-function readFromLuciOpkgCopyPaste(path) {
-  let luciOpkgCopyPaste = '';
-  const regexToStripFromLuciOpkgCopyPaste = /(?<=^[\S]*)[\s].*\n.*[\s]*/gm;
-
-  try {
-    luciOpkgCopyPaste = fs.readFileSync(path, 'utf8');
-  } catch (err) {
-    if (!err.message.includes('no such file or directory')) {
-      console.error(err);
-    }
-  }
-
-  return luciOpkgCopyPaste
-    .replace(regexToStripFromLuciOpkgCopyPaste, ` `)
-    .trim()
-    .split(' ')
-    .filter(Boolean);
-}
+import { readFromLuciOpkgCopyPaste } from "./parseOpkgOutput.mjs";
 
 const fromLuciOpkgCopyPaste = readFromLuciOpkgCopyPaste("luci-opkg.txt");
 
