@@ -2,7 +2,8 @@
   "name": "openwrt-firmware-builder-helper",
   "version": "1.0.0",
   "description": "A better way to build package lists for the OpenWRT Firmware Builder",
-  "main": "index.js",
+  "main": "index.ts",
+  "bin": { "ofbh-cli": "cli.ts" },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,5 +22,18 @@
   "bugs": {
     "url": "https://github.com/helmturner/openwrt-firmware-builder-helper/issues"
   },
-  "homepage": "https://github.com/helmturner/openwrt-firmware-builder-helper#readme"
+  "homepage": "https://github.com/helmturner/openwrt-firmware-builder-helper#readme",
+  "dependencies": {
+    "@commander-js/extra-typings": "^12.0.1",
+    "chalk": "^5.3.0",
+    "clear": "^0.1.0",
+    "commander": "^12.0.0",
+    "figlet": "^1.7.0"
+  },
+  "devDependencies": {
+    "@types/figlet": "^1.5.8",
+    "@types/node": "^20.11.30",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.3"
+  }
 }
