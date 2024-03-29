@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-function readFromCopyPaste(path) {
+function readFromLuciOpkgCopyPaste(path) {
   let luciOpkgCopyPaste = '';
   const regexToStripFromLuciOpkgCopyPaste = /(?<=^[\S]*)[\s].*\n.*[\s]*/gm;
 
@@ -14,14 +14,15 @@ function readFromCopyPaste(path) {
 
   return luciOpkgCopyPaste
     .replace(regexToStripFromLuciOpkgCopyPaste, ` `)
+    .trim()
     .split(' ')
     .filter(Boolean);
 }
 
-const fromCopyPaste = readFromCopyPaste('luci-opkg-copy-paste.txt');
+const fromLuciOpkgCopyPaste = readFromLuciOpkgCopyPaste("luci-opkg.txt");
 
 const arr = [
-  ...fromCopyPaste,
+  ...fromLuciOpkgCopyPaste,
   'strongswan-mod-curl',
   'iptables-mod-conntrack-extra',
   'iptables-mod-ipopt',
@@ -282,7 +283,9 @@ const arr = [
   'usbutils',
   'brcmfmac-firmware-usb',
 ];
+
 let unique = new Set(arr.sort());
 let print = Array.from(unique);
-fs.writeFileSync('./packages.txt', print.join(' '));
+
+fs.writeFileSync('./packages.txt', print.join(' ').trim());
 export default print;
