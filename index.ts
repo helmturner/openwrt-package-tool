@@ -5,12 +5,17 @@ import { readFromPackagesInput } from "./parsePackageList.ts";
 export default function (opts: {
   listPaths?: string[];
   opkgListPaths?: string[];
-  jsonBackupPaths?: string[];
+  jsonListPaths?: string[];
   removeListPaths?: string[];
-  outfile: string;
+  backup?: string | false;
+  output?: string | false;
 }) {
   const inputs: string[][] = [];
   const removals = new Set<string>();
+
+  if (!opts.backup && !opts.output) {
+    throw new Error("No output specified");
+  }
 
   if (opts.removeListPaths) {
     for (const path of opts.removeListPaths) {
@@ -30,8 +35,8 @@ export default function (opts: {
     }
   }
 
-  if (opts.jsonBackupPaths) {
-    for (const path of opts.jsonBackupPaths) {
+  if (opts.jsonListPaths) {
+    for (const path of opts.jsonListPaths) {
       const json = JSON.parse(fs.readFileSync(path, "utf-8"));
       if (!json.packages) {
         throw new Error('Invalid JSON backup file: missing "packages" key');
@@ -56,14 +61,11 @@ export default function (opts: {
   const unique = new Set(inputs.flat().sort());
   const packages = Array.from(unique).filter((pkg) => !removals.has(pkg));
 
-  fs.writeFileSync(opts.outfile, packages.join(" ").trim());
+  if (opts.output) {
+    fs.writeFileSync(opts.output, packages.join(" ").trim());
+  }
 
-  const month = new Date().getMonth();
-  const day = new Date().getDate();
-  const year = new Date().getFullYear();
-
-  fs.writeFileSync(
-    `backup_${month}-${day}-${year % 100}_${Date.now()}.json`,
-    JSON.stringify({ packages }, null, 2)
-  );
+  if (opts.backup) {
+    fs.writeFileSync(opts.backup, JSON.stringify({ packages }, null, 2));
+  }
 }
