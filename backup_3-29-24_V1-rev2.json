@@ -160,6 +160,7 @@
     "luci-app-acme",
     "luci-app-adblock",
     "luci-app-attendedsysupgrade",
+    "luci-app-banip",
     "luci-app-ddns",
     "luci-app-hd-idle",
     "luci-app-lxc",

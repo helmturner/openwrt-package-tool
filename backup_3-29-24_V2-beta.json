@@ -161,6 +161,7 @@
     "luci-app-adblock",
     "luci-app-adblock-fast",
     "luci-app-attendedsysupgrade",
+    "luci-app-banip",
     "luci-app-ddns",
     "luci-app-hd-idle",
     "luci-app-lxc",
