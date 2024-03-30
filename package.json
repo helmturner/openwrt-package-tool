@@ -1,9 +1,11 @@
 {
-  "name": "openwrt-firmware-builder-helper",
+  "name": "openwrt-package-list-builder",
   "version": "1.0.0",
   "description": "A better way to build package lists for the OpenWRT Firmware Builder",
   "main": "index.ts",
-  "bin": { "ofbh-cli": "cli.ts" },
+  "bin": {
+    "oplb": "cli.ts"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

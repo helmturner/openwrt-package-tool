@@ -13,10 +13,6 @@ export default function (opts: {
   const inputs: string[][] = [];
   const removals = new Set<string>();
 
-  if (!opts.backup && !opts.output) {
-    throw new Error("No output specified");
-  }
-
   if (opts.removeListPaths) {
     for (const path of opts.removeListPaths) {
       readFromPackagesInput(path).forEach((pkg) => removals.add(pkg));
