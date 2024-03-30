@@ -173,6 +173,7 @@
     "luci-app-statistics",
     "luci-app-travelmate",
     "luci-app-uhttpd",
+    "luci-app-watchcat",
     "luci-app-wireguard",
     "luci-base",
     "luci-compat",
@@ -232,7 +233,6 @@
     "urandom-seed",
     "usbids",
     "usbutils",
-    "watchcat",
     "wireguard-tools",
     "wpad-basic-wolfssl"
   ]
