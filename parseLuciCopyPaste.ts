@@ -4,8 +4,9 @@ import fs from "fs";
  * Returns an array of package names given the output from `opkg list-installed`
  * @param {string} path
  */
-export function readFromOpkgOutput(path: string) {
+export function readFromLuciOpkgCopyPaste(path: string) {
   let luciOpkgCopyPaste = "";
+  const regexToStripFromLuciOpkgCopyPaste = /(?<=^[\S]*)[\s].*\n.*[\s]*/gm;
 
   try {
     luciOpkgCopyPaste = fs.readFileSync(path, "utf8");
@@ -18,7 +19,8 @@ export function readFromOpkgOutput(path: string) {
   }
 
   return luciOpkgCopyPaste
-    .split("\n")
-    .map((line) => line.split(" - ")[0].trim())
+    .replace(regexToStripFromLuciOpkgCopyPaste, ` `)
+    .trim()
+    .split(" ")
     .filter(Boolean);
 }

@@ -1,5 +1,5 @@
 import fs from "node:fs";
-import { readFromLuciOpkgCopyPaste } from "./parseOpkgOutput.ts";
+import { readFromOpkgOutput } from "./parseOpkgOutput.ts";
 import { readFromPackagesInput } from "./parsePackageList.ts";
 
 export default function (opts: {
@@ -27,7 +27,7 @@ export default function (opts: {
 
   if (opts.opkgListPaths) {
     for (const path of opts.opkgListPaths) {
-      inputs.push(readFromLuciOpkgCopyPaste(path));
+      inputs.push(readFromOpkgOutput(path));
     }
   }
 
